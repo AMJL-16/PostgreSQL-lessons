@@ -4,8 +4,7 @@ from sqlalchemy import (
 
 # executing the instructions from our loalhost "chinook" db
 db = create_engine("postgresql:///chinook")
-# the 3 slash means that our DB is hosted locally in our workspace envi
-
+# the 3 slash means that our DB is hosted locally in our workspace env
 # The metadata class will containa collection of our table objects
 # and associated data within those objects.
 meta = MetaData(db)
@@ -41,25 +40,28 @@ track_table = Table(
 
 # making the connection using the .connect method and the WITH statement
 with db.connect() as connection:
-
+    #
     # Query 1 - Select all records from the "Artist" table
     # select_query = artist_table.select()
-
+    #
     # Query 2 - Select only the "Name" column from the "Artist" table
-    # select_query = artist_table.select().with_only_columns([artist_table.c.Name])
-
+    # select_query =
+    # artist_table.select().with_only_columns([artist_table.c.Name])
+    #
     # Query 3 - Select only 'Queen' from the "Artist" table
-    # select_query = artist_table.select().where(artist_table.c.Name == "Queen")
-
+    # select_query =
+    # artist_table.select().where(artist_table.c.Name == "Queen")
+    #
     # Query 4 - Select only 'ArtistId' #51 from the "Artist" table
     # select_query = artist_table.select().where(artist_table.c.ArtistId == 51)
-
+    #
     # Query 5 - Select only the albums with 'ArtistId' #51 on the "Album" table
     # select_query = album_table.select().where(album_table.c.ArtistId == 51)
-
-    # Query 6 - Select all the tracks where the composer is 'Queen' from the "Track" table
-    select_query = track_table.select().where(track_table.c.Composer == "Queen")
-
+    #
+    # Query 6 - Select all the tracks where the composer
+    #  is 'Queen' from the "Track" table
+    select_query = track_table.select().where(
+        track_table.c.Composer == "Queen")
 
     results = connection.execute(select_query)
     for result in results:
